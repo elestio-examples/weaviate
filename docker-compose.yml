@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  weaviate:
+    image: semitechnologies/weaviate:1.18.0
+    ports:
+    - 172.17.0.1:8652:8080
+    restart: always
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      CLUSTER_HOSTNAME: 'node1'
+      ORIGIN: ${BASE_URL}
+    volumes:
+      - ./weaviate:/var/lib/weaviate
