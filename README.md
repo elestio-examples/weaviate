@@ -15,14 +15,7 @@ Deploy Weaviate server with CI/CD on Elestio
 You can can open Weaviate UI here:
 
     URL: https://[CI_CD_DOMAIN]
-
-# Weaviate Console
-
-    https://console.weaviate.io/
-
-You can login to the console with your self-posted address:
-
-    https://[CI_CD_DOMAIN]
+   
 
 <img src="./Steps/step-01.png" style='width: 300px;'/>
 
