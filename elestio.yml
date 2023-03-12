@@ -9,7 +9,6 @@ ports:
     isAuth: true
     login: "root"
     password: "random_password"
-
 config:
   runTime: "dockerCompose"
   version: ""
@@ -27,5 +26,3 @@ lifeCycleConfig:
   preRestoreCommand: "./scripts/preRestore.sh"
   postRestoreCommand: "./scripts/postRestore.sh"
   postDeployCommand: "./scripts/postDeploy.sh"
-webUI:
-  - url: "https://[CI_CD_DOMAIN]"

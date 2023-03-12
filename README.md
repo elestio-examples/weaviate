@@ -15,9 +15,28 @@ Deploy Weaviate server with CI/CD on Elestio
 You can can open Weaviate UI here:
 
     URL: https://[CI_CD_DOMAIN]
-   
+    login: root
+    password: [APP_PASSWORD]
 
-<img src="./Steps/step-01.png" style='width: 300px;'/>
+# How to connect to your instance with Node.js
+
+First you need to install the package
+
+    npm install weaviate-client
+
+Then, you can connect to your instance with the following:
+
+    const weaviate = require("weaviate-client");
+
+    var username = "root";
+    var password = "[APP_PASSWORD]";
+    var auth = "Basic " + Buffer.from(username + ":" + password).toString("base64");
+
+    const client = weaviate.client({
+        scheme: "https",
+        host: "[CI_CD_DOMAIN]",
+        headers: { Authorization: auth },
+    });
 
 # Documentation
 
