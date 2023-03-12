@@ -6,12 +6,7 @@ ports:
     targetIP: "172.17.0.1"
     public: true
     path: "/"
-    isAuth: true
-    login: "root"
-    password: "random_password"
-environments:
-  - key: "ADMIN_PASSWORD"
-    value: "random_password"
+    isAuth: false
 
 config:
   runTime: "dockerCompose"
@@ -32,6 +27,3 @@ lifeCycleConfig:
   postDeployCommand: "./scripts/postDeploy.sh"
 webUI:
   - url: "https://[CI_CD_DOMAIN]"
-    label: "Weaviate Admin"
-    login: "[ADMIN_EMAIL]"
-    password: "[ADMIN_PASSWORD]"
