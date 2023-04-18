@@ -12,7 +12,7 @@ Deploy Weaviate server with CI/CD on Elestio
 
 # Once deployed ...
 
-You can can open Weaviate UI here:
+You can open Weaviate UI here:
 
     URL: https://[CI_CD_DOMAIN]
     login: root
