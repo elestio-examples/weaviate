@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:latest
+    image: semitechnologies/weaviate:${SOFTWARE_VERSION_TAG}
     ports:
     - 172.17.0.1:8652:8080
     restart: always
