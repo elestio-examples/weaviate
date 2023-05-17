@@ -9,6 +9,9 @@ ports:
     isAuth: true
     login: "root"
     password: "random_password"
+environments:
+  - key: "SOFTWARE_VERSION_TAG"
+    value: "latest"    
 config:
   runTime: "dockerCompose"
   version: ""
