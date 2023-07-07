@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+  weaviate:
+    image: elestio4test/weaviate:${SOFTWARE_VERSION_TAG}
+    ports:
+      - 172.17.0.1:8652:8080
+    restart: always
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      CLUSTER_HOSTNAME: 'node1'
+      DEFAULT_VECTORIZER_MODULE: text2vec-cohere
+      ENABLE_MODULES: text2vec-cohere
+      COHERE_APIKEY: sk-foobar
+      TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
+    volumes:
+      - ./weaviate:/var/lib/weaviate
+  t2v-transformers:
+    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
+    environment:
+      ENABLE_CUDA: 0 # set to 1 to enable
