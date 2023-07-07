@@ -38,8 +38,8 @@ Edit the .env file with your own values.
 
 Create data folders with correct permissions
 
-    mkdir -p ./data
-    chown -R 1000:1000 ./data
+    mkdir -p ./weaviate
+    chown -R 1000:1000 ./weaviate
 
 Run the project with the following command
 
