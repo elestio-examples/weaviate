@@ -45,7 +45,7 @@ Run the project with the following command
 
     docker-compose up -d
 
-You can access the Web UI at: `http://your-domain:28080`
+You can access the Web UI at: `http://your-domain:8652`
 
 ## Docker-compose
 
