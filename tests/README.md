@@ -8,7 +8,7 @@
 
 # Weaviate, verified and packaged by Elestio
 
-[Weaviate](https://github.com/dullage/weaviate)  is an open-source vector database. It allows you to store data objects and vector embeddings from your favorite ML-models, and scale seamlessly into billions of data objects.
+[Weaviate](https://github.com/dullage/weaviate) is an open-source vector database. It allows you to store data objects and vector embeddings from your favorite ML-models, and scale seamlessly into billions of data objects.
 
 <img src="https://github.com/elestio-examples/weaviate/raw/main/Weaviate.png" alt="weaviate" width="800">
 
@@ -59,20 +59,35 @@ Here are some example snippets to help you get started creating a container.
         - 172.17.0.1:8652:8080
         restart: always
         environment:
-        QUERY_DEFAULTS_LIMIT: 25
-        AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-        PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-        CLUSTER_HOSTNAME: 'node1'
-        DEFAULT_VECTORIZER_MODULE: text2vec-cohere
-        ENABLE_MODULES: text2vec-cohere
-        COHERE_APIKEY: sk-foobar
-        TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
+        QUERY_DEFAULTS_LIMIT: ${QUERY_DEFAULTS_LIMIT}
+        AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: ${AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED}
+        PERSISTENCE_DATA_PATH: ${PERSISTENCE_DATA_PATH}
+        CLUSTER_HOSTNAME: ${CLUSTER_HOSTNAME}
+        DEFAULT_VECTORIZER_MODULE: ${DEFAULT_VECTORIZER_MODULE}
+        ENABLE_MODULES: ${ENABLE_MODULES}
+        COHERE_APIKEY: ${COHERE_APIKEY}
+        TRANSFORMERS_INFERENCE_API: ${TRANSFORMERS_INFERENCE_API}
         volumes:
         - ./weaviate:/var/lib/weaviate
     t2v-transformers:
         image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
         environment:
-        ENABLE_CUDA: 0 # set to 1 to enable
+        ENABLE_CUDA: ${ENABLE_CUDA} # set to 1 to enable
+
+### Environment variables
+
+|                Variable                 |   Value (example)   |
+| :-------------------------------------: | :-----------------: |
+|          SOFTWARE_VERSION_TAG           |       latest        |
+|          QUERY_DEFAULTS_LIMIT           |         10          |
+| AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED |        true         |
+|          PERSISTENCE_DATA_PATH          |        /path        |
+|            CLUSTER_HOSTNAME             |  your-cluster-name  |
+|        DEFAULT_VECTORIZER_MODULE        |   text2vec-cohere   |
+|             ENABLE_MODULES              |   text2vec-cohere   |
+|              COHERE_APIKEY              | your-cohere-api-key |
+|       TRANSFORMERS_INFERENCE_API        |         api         |
+|               ENABLE_CUDA               |          0          |
 
 # Maintenance
 
