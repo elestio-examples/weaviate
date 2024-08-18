@@ -1,15 +1,15 @@
-version: '3.4'
+version: "3.4"
 services:
   weaviate:
     image: semitechnologies/weaviate:${SOFTWARE_VERSION_TAG}
     ports:
-    - 172.17.0.1:8652:8080
+      - 172.17.0.1:8652:8080
     restart: always
     environment:
       QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      CLUSTER_HOSTNAME: 'node1'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "true"
+      PERSISTENCE_DATA_PATH: "/var/lib/weaviate"
+      CLUSTER_HOSTNAME: "node1"
       DEFAULT_VECTORIZER_MODULE: text2vec-cohere
       ENABLE_MODULES: text2vec-cohere
       COHERE_APIKEY: sk-foobar
@@ -20,3 +20,30 @@ services:
     image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
+
+  postgres:
+    image: elestio/postgres:15
+    shm_size: 1g
+    restart: always
+    environment:
+      POSTGRES_DB: vectoradmin
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${ADMIN_PASSWORD}
+      PGDATA: /var/lib/postgresql/data
+      TS_TUNE_MAX_CONNS: 100
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  vector-admin:
+    image: ghcr.io/mintplex-labs/vector-admin:${SOFTWARE_VERSION_TAG}
+    restart: always
+    volumes:
+      - "./.env:/app/backend/.env"
+    ports:
+      - "172.17.0.1:46822:3001"
+      - "3355:3355"
+      - "8288:8288"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
