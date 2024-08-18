@@ -12,11 +12,17 @@ Deploy Weaviate server with CI/CD on Elestio
 
 # Once deployed ...
 
-You can open Weaviate UI here:
+You can use Weaviate credentials here:
 
     URL: https://[CI_CD_DOMAIN]
     login: root
     password: [APP_PASSWORD]
+
+You can open VectorAdmin UI here:
+
+    URL: https://[CI_CD_DOMAIN]:46834
+    login: [ADMIN_EMAIL]
+    password: [ADMIN_PASSWORD]
 
 # How to connect to your instance with Node.js
 
